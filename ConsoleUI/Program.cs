@@ -13,8 +13,28 @@ namespace ConsoleUI
             //InMemory();
             //EfGetCars();
             //CarManager carManager = AddNewCar();
-           
+            //BrandTest();
+            //CarDetailsTest();
+        }
 
+        private static void CarDetailsTest()
+        {
+            CarManager carManager = new CarManager(new EfCarDal());
+
+            foreach (var car in carManager.GetCarDetails())
+            {
+                Console.WriteLine(car.CarName + "/" + car.BrandName);
+            }
+        }
+
+        private static void BrandTest()
+        {
+            Console.WriteLine("-----------------------M A R K A---------------------------");
+            BrandManager brandManager = new BrandManager(new EfBrandDal());
+            foreach (var brand in brandManager.GetAll())
+            {
+                Console.WriteLine(brand.BrandName);
+            }
         }
 
         private static CarManager AddNewCar()
