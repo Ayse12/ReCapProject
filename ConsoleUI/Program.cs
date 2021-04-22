@@ -14,19 +14,27 @@ namespace ConsoleUI
             //EfGetCars();
             //CarManager carManager = AddNewCar();
             //BrandTest();
-            //CarDetailsTest();
+            CarDetailsTest();
         }
 
         private static void CarDetailsTest()
         {
             CarManager carManager = new CarManager(new EfCarDal());
-
-            foreach (var car in carManager.GetCarDetails())
+            var result = carManager.GetCarDetails();
+            if (result.Success==true)
             {
-                Console.WriteLine(car.CarName + "/" + car.BrandName);
+                foreach (var car in result.Data)
+                {
+                    Console.WriteLine(car.CarName + "/" + car.BrandName);
+                }
             }
+            else
+            {
+                Console.WriteLine(result.Message);
+            }
+            
         }
-
+        /*
         private static void BrandTest()
         {
             Console.WriteLine("-----------------------M A R K A---------------------------");
@@ -60,6 +68,6 @@ namespace ConsoleUI
             {
                 Console.WriteLine(car.Description);
             }
-        }
+        }*/
     }
 }
